@@ -14,6 +14,7 @@
 		95D9B4951A64A7D8009E3996 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 95D9B4941A64A7D8009E3996 /* Images.xcassets */; };
 		95D9B4981A64A7D8009E3996 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 95D9B4961A64A7D8009E3996 /* LaunchScreen.xib */; };
 		95D9B4A41A64A7D8009E3996 /* CrashCourse_FlappyBirdTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 95D9B4A31A64A7D8009E3996 /* CrashCourse_FlappyBirdTests.m */; };
+		95D9B4AF1A64A80A009E3996 /* PipeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 95D9B4AE1A64A80A009E3996 /* PipeViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -40,6 +41,8 @@
 		95D9B49D1A64A7D8009E3996 /* CrashCourse-FlappyBirdTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "CrashCourse-FlappyBirdTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		95D9B4A21A64A7D8009E3996 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		95D9B4A31A64A7D8009E3996 /* CrashCourse_FlappyBirdTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CrashCourse_FlappyBirdTests.m; sourceTree = "<group>"; };
+		95D9B4AD1A64A80A009E3996 /* PipeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PipeViewController.h; sourceTree = "<group>"; };
+		95D9B4AE1A64A80A009E3996 /* PipeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PipeViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -85,6 +88,8 @@
 				95D9B48C1A64A7D8009E3996 /* AppDelegate.m */,
 				95D9B48E1A64A7D8009E3996 /* ViewController.h */,
 				95D9B48F1A64A7D8009E3996 /* ViewController.m */,
+				95D9B4AD1A64A80A009E3996 /* PipeViewController.h */,
+				95D9B4AE1A64A80A009E3996 /* PipeViewController.m */,
 				95D9B4911A64A7D8009E3996 /* Main.storyboard */,
 				95D9B4941A64A7D8009E3996 /* Images.xcassets */,
 				95D9B4961A64A7D8009E3996 /* LaunchScreen.xib */,
@@ -219,6 +224,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				95D9B4AF1A64A80A009E3996 /* PipeViewController.m in Sources */,
 				95D9B4901A64A7D8009E3996 /* ViewController.m in Sources */,
 				95D9B48D1A64A7D8009E3996 /* AppDelegate.m in Sources */,
 				95D9B48A1A64A7D8009E3996 /* main.m in Sources */,
