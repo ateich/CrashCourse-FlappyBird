@@ -9,5 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface PipeViewController : UIViewController
-
+-(void)drawPipeWithHeight:(int)height width:(int)width openingAt:(int)openingPosition onView:(UIViewController*)vc;
 @end

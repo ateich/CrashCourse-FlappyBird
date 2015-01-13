@@ -8,7 +8,10 @@
 
 #import "PipeViewController.h"
 
-@interface PipeViewController ()
+@interface PipeViewController (){
+    UIImageView *pipe;
+    NSTimer *movePipeInterval;
+}
 
 @end
 
@@ -24,13 +27,29 @@
     // Dispose of any resources that can be recreated.
 }
 
--(void)drawPipe{
-    UIImageView *pipe = [[UIImageView alloc] init];
+-(void)drawPipeWithHeight:(int)height width:(int)width openingAt:(int)openingPosition onView:(UIViewController*)vc{
+    pipe = [[UIImageView alloc] init];
     [pipe setBackgroundColor:[UIColor greenColor]];
+    [pipe setFrame:CGRectMake(vc.view.frame.size.width, 0, width, height)];
+    [vc.view addSubview:pipe];
+    
+    if(movePipeInterval){
+        [movePipeInterval invalidate];
+    }
+    movePipeInterval = [NSTimer scheduledTimerWithTimeInterval:.005 target:self selector:@selector(movePipe) userInfo:nil repeats:YES];
     
     //Draw top of pipe
     //Leave space for bird
     //Draw bottom of pipe
+}
+
+-(void)movePipe{
+    [pipe setFrame:CGRectMake(pipe.frame.origin.x - 1, pipe.frame.origin.y, pipe.frame.size.width, pipe.frame.size.height)];
+    
+    if(pipe.frame.origin.x + pipe.frame.size.width < 0){
+        [movePipeInterval invalidate];
+        [pipe removeFromSuperview];
+    }
 }
 
 /*
