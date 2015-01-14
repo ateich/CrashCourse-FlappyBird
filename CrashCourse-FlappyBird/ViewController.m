@@ -23,12 +23,14 @@
 //    pipes = [[NSMutableArray alloc] init];
     // Do any additional setup after loading the view, typically from a nib.
     
-    createPipeInterval = [NSTimer scheduledTimerWithTimeInterval:5 target:self selector:@selector(createNewPipe) userInfo:nil repeats:YES];
+    createPipeInterval = [NSTimer scheduledTimerWithTimeInterval:3 target:self selector:@selector(createNewPipe) userInfo:nil repeats:YES];
 }
 
 -(void)createNewPipe{
     PipeViewController *pipe = [[PipeViewController alloc] init];
-    [pipe drawPipeWithHeight:self.view.frame.size.height width:self.view.frame.size.width/5 openingAt:2 onView:self];
+    double index = arc4random()%4;
+    NSLog(@"%f", index);
+    [pipe drawPipeWithHeight:self.view.frame.size.height width:self.view.frame.size.width/5 openingAt:index onView:self];
 }
 
 - (void)didReceiveMemoryWarning {
