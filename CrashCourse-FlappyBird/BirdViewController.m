@@ -8,7 +8,10 @@
 
 #import "BirdViewController.h"
 
-@interface BirdViewController ()
+@interface BirdViewController (){
+    NSTimer *fall;
+    double acceleration;
+}
 
 @end
 
@@ -28,6 +31,19 @@
     [self.view setFrame:CGRectMake(birdX, birdY, width, height)];
     [self.view setBackgroundColor:[UIColor redColor]];
     [view addSubview:self.view];
+    
+    fall = [NSTimer scheduledTimerWithTimeInterval:.01 target:self selector:@selector(fallDown) userInfo:nil repeats:YES];
+}
+
+-(void)fallDown{
+    if(!acceleration){
+        acceleration = 0;
+    }
+    
+    acceleration += 1;
+    int reduceGravityBy = 10;
+    
+    [self.view setFrame:CGRectMake(self.view.frame.origin.x, self.view.frame.origin.y + acceleration/reduceGravityBy, self.view.frame.size.width, self.view.frame.size.height)];
 }
 
 @end
