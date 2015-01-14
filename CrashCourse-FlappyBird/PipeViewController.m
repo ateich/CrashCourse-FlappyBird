@@ -7,34 +7,48 @@
 //
 
 #import "PipeViewController.h"
+#import "BirdViewController.h"
 
 @interface PipeViewController (){
     UIImageView *pipe;
     NSTimer *movePipeInterval;
     UIImageView *pipeTop;
     UIImageView *pipeBottom;
+    UIView *opening;
+    
+    int numberOfSections;
+    UIView *obstacle;
 }
 
 @end
 
 @implementation PipeViewController
 
+-(PipeViewController*)init{
+    self = [super init];
+    numberOfSections = 4;
+    return self;
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
-// opening position 1 || 2 || 3
+-(void)setObstacleForCollision:(UIView*)theObstacle{
+    obstacle = theObstacle;
+}
+
 -(void)drawPipeWithHeight:(int)height width:(int)width openingAt:(int)openingPosition onView:(UIViewController*)vc{
+//    openingPosition = 1;
+    
     pipe = [[UIImageView alloc] init];
-//    [pipe setBackgroundColor:[UIColor blueColor]];
     [pipe setFrame:CGRectMake(vc.view.frame.size.width, 0, width, height)];
     [vc.view addSubview:pipe];
+    [vc.view sendSubviewToBack:pipe];
     
     pipeTop = [[UIImageView alloc] init];
     pipeBottom = [[UIImageView alloc] init];
@@ -45,7 +59,6 @@
     [pipeTop setBackgroundColor:[UIColor greenColor]];
     [pipeBottom setBackgroundColor:[UIColor greenColor]];
     
-    int numberOfSections = 4;
     float pipeSectionHeight = vc.view.frame.size.height/numberOfSections;
     
     [pipeTop setFrame:CGRectMake(0, 0, width, pipeSectionHeight*(openingPosition))];
@@ -53,14 +66,13 @@
     float pipeBottomHeight = pipeSectionHeight*(numberOfSections-1-openingPosition);
     [pipeBottom setFrame:CGRectMake(0, vc.view.frame.size.height - pipeBottomHeight, width, pipeBottomHeight)];
     
+    opening = [[UIView alloc] init];
+    [opening setFrame:CGRectMake(0, pipeTop.frame.size.height, width, height)];
+    
     if(movePipeInterval){
         [movePipeInterval invalidate];
     }
     movePipeInterval = [NSTimer scheduledTimerWithTimeInterval:.005 target:self selector:@selector(movePipe) userInfo:nil repeats:YES];
-    
-    //Draw top of pipe
-    //Leave space for bird
-    //Draw bottom of pipe
 }
 
 -(void)movePipe{
@@ -68,20 +80,33 @@
     
     //check if we hit the bird
     
+    //if inside the pipe (horizontally)
+    //if pipe.x is less than bird.x + bird.width
+    //and pipe.x + pipe.width > bird.x
+    
+    //if not (within the opening vertically)
+    //obstacle.y > opening.y
+    //and obstacle.y+obstacle.height < opening.y+opening.height
+    
+    //collision detected, kill obstacle
+    if(pipe.frame.origin.x <= obstacle.frame.origin.x + obstacle.frame.size.width){
+        if(!(obstacle.frame.origin.y > opening.frame.origin.y &&
+             obstacle.frame.origin.y + obstacle.frame.size.height < opening.frame.origin.y + opening.frame.size.height)){
+            NSLog(@"COLLISION");
+            [movePipeInterval invalidate];
+        }
+    }
+    
+    
+    //check if the pipe is off screen
     if(pipe.frame.origin.x + pipe.frame.size.width < 0){
         [movePipeInterval invalidate];
         [pipe removeFromSuperview];
     }
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+-(int)getNumberOfSections{
+    return numberOfSections;
 }
-*/
 
 @end

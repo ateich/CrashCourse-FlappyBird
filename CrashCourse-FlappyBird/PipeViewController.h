@@ -9,5 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @interface PipeViewController : UIViewController
+-(int)getNumberOfSections;
+-(void)setObstacleForCollision:(UIView*)theObstacle;
 -(void)drawPipeWithHeight:(int)height width:(int)width openingAt:(int)openingPosition onView:(UIViewController*)vc;
 @end
